@@ -1,11 +1,10 @@
-Simkl Search - select and search
-====================
+# Simkl Search - select and search
 
-###Select text on page and choose where find the text on. Customised to use with Simkl TV Tracker service.###
+## Select text on page and choose where find the text on. Customised to use with the [Simkl](https://simkl.com) TV Tracker service
 
-[![Chrome Web Store](https://chrome.google.com/webstore/detail/simkl-search-select-and-s/mdofghopgfobjkgepojjmcfljnocaaff?hl=en-US&gl=US)
+Extension available on [Chrome Web Store](https://chrome.google.com/webstore/detail/simkl-search-select-and-s/mdofghopgfobjkgepojjmcfljnocaaff?hl=en-US&gl=US)
 
-### INTRODUCTION ###
+### INTRODUCTION 
 
 Simkl Search is a Google Chrome extension. Extend your context menu (Right Click) with an option to find a certain movie on Simkl, IMDB or any other service.
 

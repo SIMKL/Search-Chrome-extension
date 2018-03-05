@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sss" ng-init="template='options/searchEngines.html'">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Options: Simkl Search</title>
+    
+    <!-- Lib styles -->
+
+    <link href="css/lib/ng-sortable.min.css" rel="stylesheet">
+    <link href="css/lib/ng-sortable.style.min.css" rel="stylesheet">
+    <link href="css/lib/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles  -->
+
+    <link href="css/sss.options.css" rel="stylesheet">
+    
+</head>
+<body>
+    <!-- Region Top nav -->
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                </button>
+                <a class="navbar-brand" href="https://simkl.com" target="_blank"><img src="https://us.simkl.in/img_blog_2012/logo.png" alt="SIMKL" width="" height="20" style="border: 0;"></a>
+                <a class="navbar-brand" href="https://simkl.com/apps/chrome/" target="_blank">Search Extension</a>
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://simkl.com/" target="_blank">Simkl.com</a>
+                    </li>
+                    <li><a href="https://simkl.org/" target="_blank" i18n-content="bg_extensionBlog">Blog</a>
+                    </li>
+                    <li><a href="https://simkl.com/app/all-netflix-categories/share" target="_blank">Share</a>
+                    </li>
+                    <li>
+                        <a href="https://simkl.com" target="_blank"><img src="images/16.png" border="0" style="filter: invert()"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- endregion Top Nav -->
+
+    <!-- container + row -->
+    <div class="container-fluid" ng-controller="sssData">
+        <div class="row">
+
+            <!-- Region Left nav -->
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li ng-class="{ 'active': template == 'options/searchEngines.html' }"><a href="#" ng-click="template='options/searchEngines.html'" i18n-content="o_searchEngines">Search engines</a>
+                    </li>
+                    <li ng-class="{ 'active': template == 'options/advancedConfig.html' }"><a href="#" ng-click="template='options/advancedConfig.html'" i18n-content="o_advancedConfig">Advanced config</a>
+                    </li>
+                    <li ng-class="{ 'active': template == 'options/importExport.html' }"><a href="#" ng-click="template='options/importExport.html'" i18n-content="o_importExport">Import/export</a>
+                    </li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li ng-class="{ 'active': template == 'options/help.html' }"><a href="#" ng-click="template='options/help.html'" i18n-content="o_help">Help</a>
+                    </li>
+                    <li ng-class="{ 'active': template == 'options/supportMe.html' }"><a href="#" ng-click="template='options/supportMe.html'" i18n-content="o_supportMe">Support us :)</a>
+                    </li>
+                    <li ng-class="{ 'active': template == 'options/creditsDisclaimer.html' }"><a href="#" ng-click="template='options/creditsDisclaimer.html'" i18n-content="o_credits">Credits/Disclaimer</a>
+                    </li>
+
+                </ul>
+                <p class="separator"></p>
+              <ul class="nav nav-sidebar">
+                    <li>
+                        <a href="https://simkl.com/apps/" target="_blank">More Simkl Apps</a>
+                    </li>
+                    <li>
+                        <a href="https://simkl.org" target="_blank" i18n-content="o_checkOutMyBlog">Check out our blog for more.</a>
+                    </li>
+                    <li class="realSmall">
+                        <a href="https://simkl.org" target="_blank" id="currentVersion">{{currentVersion}}</a>
+                    </li>
+                </ul>
+
+
+                <!-- PayPal -->
+            </div>
+            <!-- Endregion Left nav -->
+
+            <!-- Region Main content area -->
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                <!-- Angular includes -->
+                <!-- Alerts -->
+                <div class="alert-container">
+                    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+                    <alert ng-repeat="confirm in confirms" type="warning" close="closeConfirm($index)">{{confirm.msg}}
+                        <div class="form-controls-alert">
+                            <button class="btn btn-default" data-ng-click="closeConfirm($index)">No</button>
+                            <button class="btn btn-danger" data-ng-click="yesConfirm(confirm.action, $index)">Yes</button>
+                        </div>
+                    </alert>
+                </div>
+
+                <div class="options-container" ng-include="template">
+                </div>
+
+                <!-- END Angular includes -->
+
+            </div>
+
+            <!-- Endregion Main content area -->
+        </div>
+    </div>
+    <!-- END container + row -->
+
+    <!-- Region script references -->
+    
+    <!--Libs-->
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-animate.min.js"></script>
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/ng-sortable.min.js"></script>
+    <script src="js/lib/angular-sanitize.min.js"></script>
+    <script src="js/lib/ui-bootstrap-tpls-0.13.0.min.js"></script>
+    <script src="js/lib/ui-utils.min.js"></script>
+
+    <!--sss code-->
+    <script src="js/sss.options.service.js"></script>
+    <script src="js/sss.options.controller.js"></script>
+    <script src="js/sss.options.controller.credits.js"></script>
+    <script src="js/sss.options.directive.js"></script>
+
+    <!--external -->
+    <script src="https://apis.google.com/js/plusone.js"></script>
+    
+    <!-- Endregion -->
+
+</body>
+
+</html>

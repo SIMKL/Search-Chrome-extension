@@ -3,7 +3,7 @@
   "short_name" : "Simkl Search",
   "default_locale": "en",
   "description": "Select text on page and choose where find the text on. Customised to use with Simkl TV Tracker service.",
-  "version": "1.0.2",
+  "version": "1.0.4",
    "manifest_version": 2,
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://apis.google.com https://api.github.com; object-src 'self'",
   "permissions": ["contextMenus"],

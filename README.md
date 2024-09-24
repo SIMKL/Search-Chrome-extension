@@ -11,5 +11,3 @@ Simkl Search is a Google Chrome extension. Extend your context menu (Right Click
 You can customize which search engines to use or add your own.
 
 More information on our [Blog](http://simkl.org/).
-
-Originally forked from [SimpleSelectSearch](https://github.com/frenetix/SimpleSelectSearch/) 0.4.1 code.

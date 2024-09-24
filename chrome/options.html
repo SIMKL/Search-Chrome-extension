@@ -1,144 +1,167 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="sss" ng-init="template='options/searchEngines.html'">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="UTF-8">
+  <title>Simkl Search Extension Options</title>
 
-    <title>Options: Simkl Search</title>
-    
-    <!-- Lib styles -->
+  <!-- Include Materialize CSS -->
+  <link rel="stylesheet" href="libs/materialize.min.css">
 
-    <link href="css/lib/ng-sortable.min.css" rel="stylesheet">
-    <link href="css/lib/ng-sortable.style.min.css" rel="stylesheet">
-    <link href="css/lib/bootstrap.min.css" rel="stylesheet">
+  <!-- Include Material Icons from Google Fonts -->
+	<style>
+	/* material-icons-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts//material-icons-v142-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+		.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 
-    <!-- Custom styles  -->
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
 
-    <link href="css/sss.options.css" rel="stylesheet">
-    
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+	</style>
+
+  <!-- Include Custom CSS -->
+  <link rel="stylesheet" href="options.css">
+
+  <!-- Set viewport for mobile responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-    <!-- Region Top nav -->
-    <nav class="navbar navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                </button>
-                <a class="navbar-brand" href="https://simkl.com" target="_blank"><img src="https://us.simkl.in/img_blog_2012/logo.png" alt="SIMKL" width="" height="20" style="border: 0;"></a>
-                <a class="navbar-brand" href="https://simkl.com/apps/chrome/" target="_blank">Search Extension</a>
-            </div>
-
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://simkl.com/" target="_blank">Simkl.com</a>
-                    </li>
-                    <li><a href="https://simkl.org/" target="_blank" i18n-content="bg_extensionBlog">Blog</a>
-                    </li>
-                    <li><a href="https://simkl.com/app/all-netflix-categories/share" target="_blank">Share</a>
-                    </li>
-                    <li>
-                        <a href="https://simkl.com" target="_blank"><img src="images/16.png" border="0" style="filter: invert()"/>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+  <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-wrapper grey darken-4">
+            <a href="https://chromewebstore.google.com/detail/simkl-search-select-and-s/mdofghopgfobjkgepojjmcfljnocaaff" class="brand-logo left" target="_blank"><img src="https://us.simkl.in/img_blog_2012/logo.png" alt="SIMKL" width="" height="20" style="border: 0;position: relative;bottom: 2px;"> SIMKL Search Extension</a>
+            <ul class="right">
+                <li><a href="https://simkl.com/" target="_blank">Simkl.com</a></li>
+                <li><a href="https://simkl.org/" target="_blank">Extension's blog</a></li>
+            </ul>
         </div>
     </nav>
-    
-    <!-- endregion Top Nav -->
 
-    <!-- container + row -->
-    <div class="container-fluid" ng-controller="sssData">
-        <div class="row">
+  <div class="container">
+    <!-- Main Content -->
+    <div class="section">
+      <h5>My Search Engines</h5><br>
 
-            <!-- Region Left nav -->
-            <div class="col-sm-3 col-md-2 sidebar">
-                <ul class="nav nav-sidebar">
-                    <li ng-class="{ 'active': template == 'options/searchEngines.html' }"><a href="#" ng-click="template='options/searchEngines.html'" i18n-content="o_searchEngines">Search engines</a>
-                    </li>
-                    <li ng-class="{ 'active': template == 'options/advancedConfig.html' }"><a href="#" ng-click="template='options/advancedConfig.html'" i18n-content="o_advancedConfig">Advanced config</a>
-                    </li>
-                    <li ng-class="{ 'active': template == 'options/importExport.html' }"><a href="#" ng-click="template='options/importExport.html'" i18n-content="o_importExport">Import/export</a>
-                    </li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li ng-class="{ 'active': template == 'options/help.html' }"><a href="#" ng-click="template='options/help.html'" i18n-content="o_help">Help</a>
-                    </li>
-                    <li ng-class="{ 'active': template == 'options/creditsDisclaimer.html' }"><a href="#" ng-click="template='options/creditsDisclaimer.html'" i18n-content="o_credits">Credits/Disclaimer</a>
-                    </li>
+      <!-- List of Menu Items -->
+      <ul id="menu-list">
+        <!-- Menu items will be dynamically added here by options.js -->
+      </ul>
 
-                </ul>
-                <p class="separator"></p>
-              <ul class="nav nav-sidebar">
-                    <li>
-                        <a href="https://simkl.com/apps/" target="_blank">More Simkl Apps</a>
-                    </li>
-                    <li>
-                        <a href="https://simkl.org" target="_blank" i18n-content="o_checkOutMyBlog">Check out our blog for more.</a>
-                    </li>
-                    <li class="realSmall">
-                        <a href="https://simkl.org" target="_blank" id="currentVersion">{{currentVersion}}</a>
-                    </li>
-                </ul>
+      <!-- Add New Search Engine and Group Buttons -->
+      <div class="row center-align">
+		  <div class="col s12 m4">
+			<div class="card-panel hoverable">
+			  <a id="add-search-engine" class="btn-large waves-effect waves-light teal">
+				<i class="material-icons left">add</i>
+				Add Search Engine
+			  </a>
+			</div>
+		  </div>
+		  <div class="col s12 m4">
+			<div class="card-panel hoverable">
+			  <a id="add-group" class="btn-large waves-effect waves-light blue">
+				<i class="material-icons left">group_add</i>
+				Add Group
+			  </a>
+			</div>
+		  </div>
+		  <div class="col s12 m4">
+			<div class="card-panel hoverable">
+			  <a id="add-global-separator" class="btn-large waves-effect waves-light grey">
+				<i class="material-icons left">remove</i>
+				Add Separator
+			  </a>
+			</div>
+		  </div>
+	</div>
 
+      <!-- Backup Options Section -->
+      <hr>
+      <h4>Backup Options</h4>
 
-                <!-- PayPal -->
-            </div>
-            <!-- Endregion Left nav -->
-
-            <!-- Region Main content area -->
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-                <!-- Angular includes -->
-                <!-- Alerts -->
-                <div class="alert-container">
-                    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-                    <alert ng-repeat="confirm in confirms" type="warning" close="closeConfirm($index)">{{confirm.msg}}
-                        <div class="form-controls-alert">
-                            <button class="btn btn-default" data-ng-click="closeConfirm($index)">No</button>
-                            <button class="btn btn-danger" data-ng-click="yesConfirm(confirm.action, $index)">Yes</button>
-                        </div>
-                    </alert>
-                </div>
-
-                <div class="options-container" ng-include="template">
-                </div>
-
-                <!-- END Angular includes -->
-
-            </div>
-
-            <!-- Endregion Main content area -->
+      <!-- Local Backup Options -->
+      <h5>Local</h5><br>
+      <div class="row">
+        <div class="col s12">
+          <!-- Export and Import Buttons -->
+          <a id="export-settings" class="btn waves-effect waves-light blue">
+            Export to JSON
+            <i class="material-icons right">file_download</i>
+          </a>
+          <a id="import-settings" class="btn waves-effect waves-light green">
+            Import from JSON
+            <i class="material-icons right">file_upload</i>
+          </a>
+          <!-- Restore Defaults Button -->
+          <a id="restore-defaults" class="btn waves-effect waves-light red">
+            Restore Defaults
+            <i class="material-icons right">restore</i>
+          </a>
+          <!-- Hidden File Input for Import -->
+          <input type="file" id="import-file-input" accept=".json" style="display: none;">
         </div>
+      </div>
+
+      <!-- Cloud Backup Options -->
+      <h5>Cloud</h5><br>
+      <div class="row">
+        <div class="col s12">
+          <!-- Sync Buttons for Chrome Storage -->
+          <a id="sync-to-chrome" class="btn waves-effect waves-light orange">
+            Save to Chrome Sync
+            <i class="material-icons right">sync</i>
+          </a>
+          <a id="import-from-chrome" class="btn waves-effect waves-light purple">
+            Import from Chrome Sync
+            <i class="material-icons right">cloud_download</i>
+          </a>
+        </div>
+      </div>
+
     </div>
-    <!-- END container + row -->
+  </div>
 
-    <!-- Region script references -->
-    
-    <!--Libs-->
-    <script src="js/lib/angular.min.js"></script>
-    <script src="js/lib/angular-animate.min.js"></script>
-    <script src="js/lib/jquery.min.js"></script>
-    <script src="js/lib/bootstrap.min.js"></script>
-    <script src="js/lib/ng-sortable.min.js"></script>
-    <script src="js/lib/angular-sanitize.min.js"></script>
-    <script src="js/lib/ui-bootstrap-tpls-0.13.0.min.js"></script>
-    <script src="js/lib/ui-utils.min.js"></script>
+  <!-- Include jQuery (required by Materialize) -->
+  <script src="libs/jquery-3.7.1.min.js"></script>
 
-    <!--sss code-->
-    <script src="js/sss.options.service.js"></script>
-    <script src="js/sss.options.controller.js"></script>
-    <script src="js/sss.options.controller.credits.js"></script>
-    <script src="js/sss.options.directive.js"></script>
+  <!-- Include Materialize JS -->
+  <script src="libs/materialize.min.js"></script>
 
-    <!--external -->
-    <script src="https://apis.google.com/js/plusone.js"></script>
-    
-    <!-- Endregion -->
+  <!-- Include Sortable JS -->
+  <script src="libs/Sortable.min.js"></script>
+
+  <!-- Include defaults.js before options.js -->
+  <script src="defaults.js"></script>
+
+  <!-- Include custom JS -->
+  <script src="options.js"></script>
 
 </body>
-
 </html>

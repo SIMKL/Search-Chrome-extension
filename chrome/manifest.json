@@ -1,19 +1,36 @@
 {
-  "name": "Simkl Search - select and search",
-  "short_name" : "Simkl Search",
-  "default_locale": "en",
-  "description": "Select text on page and choose where find the text on. Customised to use with Simkl TV Tracker service.",
-  "version": "1.0.4",
-   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://apis.google.com https://api.github.com; object-src 'self'",
-  "permissions": ["contextMenus"],
-  "icons": {
-    "16": "images/16.png",
-    "48": "images/48.png",
-    "128": "images/128.png"
+  "name": "Simkl Search - Select and Search",
+  "description": "Select text in your browser and right-click to search on multiple engines.",
+  "version": "2.3.2",
+  "manifest_version": 3,
+  "permissions": ["contextMenus", "storage"],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
   },
   "background": {
-    "scripts": ["js/sss.background.js"]
+    "service_worker": "background.js"
   },
-  "options_page": "options.html"
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {  
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Simkl Search Options"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["libs/*", "fonts/*", "defaults.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }

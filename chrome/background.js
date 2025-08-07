@@ -5,6 +5,8 @@ importScripts('defaults.js');
 
 // Initialize an empty array to hold menu items
 let menuItems = [];
+// Promise to track initial menu item load
+let initialLoadPromise = null;
 
 // Define the main context menu ID
 const MAIN_MENU_ID = 'simkl_search_main';
@@ -61,7 +63,8 @@ function ensureItemIds() {
         handleError(chrome.runtime.lastError.message, `Error updating menu items with new IDs: ${chrome.runtime.lastError.message}`);
         return;
       }
-      // No need to call createContextMenus() here
+      // Recreate context menus immediately to avoid ID mismatch on first click
+      createContextMenus();
     });
   }
 }
@@ -193,7 +196,7 @@ function createContextMenus() {
 }
 
 // Load menu items when the service worker starts
-loadMenuItems().then(() => {
+initialLoadPromise = loadMenuItems().then(() => {
   ensureItemIds();
   // Do not call createContextMenus() here to avoid duplicate IDs
 }).catch((error) => {
@@ -234,7 +237,15 @@ function findEngineById(engineId) {
   return null;
 }
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+  // Ensure menu items are loaded before handling the first click after startup
+  if (initialLoadPromise) {
+    try {
+      await initialLoadPromise;
+    } catch (e) {
+      // Initialization failed; proceed to attempt handling anyway
+    }
+  }
   console.log('Context menu clicked:', info.menuItemId);
 
   // Handle "Options" menu item
